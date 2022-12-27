@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private fun observer() {
 
         model.getData().observe(this) {
-            binding.tvInfo.text = it.text
+            binding.tvInfo.text = it.text // get data from viewModel
         }
 
 
