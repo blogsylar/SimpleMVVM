@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.activity.viewModels
+import ru.macdroid.simplemvvm.B.Companion.c
 import ru.macdroid.simplemvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private val model: MainViewModel by viewModels()
+    private val secondViewModel: SecondViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.etInput.addTextChangedListener(object : TextWatcher {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-
                 model.setData(s.toString()) // set data into viewModel
-
             }
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -37,11 +37,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observer() {
-
         model.getData().observe(this) {
             binding.tvInfo.text = it.text // get data from viewModel
+
+
+
         }
 
+        secondViewModel.simpleString.observe(this) { vm2 ->
+            println("happy _SecondViewModel $vm2")
+        }
+    }
 
+
+
+}
+
+class A {
+    val b = c
+}
+class B {
+    companion object {
+        const val c = "11"
     }
 }

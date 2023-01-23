@@ -8,6 +8,11 @@ class MainViewModel: ViewModel() {
 
     private val simpleString = MutableLiveData<MainModel>()
 
+
+    init {
+        println("happy MainViewModel")
+    }
+
     fun setData(string: String) {
         simpleString.value = MainModel(string)
     }
